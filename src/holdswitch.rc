@@ -1,0 +1,32 @@
+#pragma code_page(65001)
+#include <winver.h>
+#include "version.h"
+
+1 VERSIONINFO
+FILEVERSION HS_VERSION_MAJOR, HS_VERSION_MINOR, HS_VERSION_PATCH, 0
+PRODUCTVERSION HS_VERSION_MAJOR, HS_VERSION_MINOR, HS_VERSION_PATCH, 0
+FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+FILEFLAGS 0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE 0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName", HS_AUTHOR
+      VALUE "FileDescription", "HoldSwitch - switch keyboard layout with a long key press"
+      VALUE "FileVersion", HS_VERSION_STR
+      VALUE "InternalName", "HoldSwitch"
+      VALUE "LegalCopyright", "© " HS_YEAR " " HS_AUTHOR ". MIT License."
+      VALUE "OriginalFilename", "HoldSwitch.exe"
+      VALUE "ProductName", "HoldSwitch"
+      VALUE "ProductVersion", HS_VERSION_STR
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END

@@ -1,0 +1,5 @@
+.venv/
+build/
+release/
+dist/HoldSwitch.exe
+dist/*.pdb
