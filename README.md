@@ -21,7 +21,7 @@ PC"*: click **More info → Run anyway**.
 
 Releases are built by [GitHub Actions](.github/workflows/build.yml) from the
 tagged source, and each one carries a signed build provenance attestation.
-With the [GitHub CLI](https://cli.github.com/):
+With the [GitHub CLI](https://cli.github.com/) 2.49 or newer:
 
 ```bash
 gh attestation verify HoldSwitch-<version>-win-x64.zip --repo Roman-Matus/HoldSwitch

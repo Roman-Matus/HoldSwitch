@@ -22,7 +22,7 @@ Windows защитила ваш компьютер»: нажмите **Подр�
 
 Релизы собирает [GitHub Actions](.github/workflows/build.yml) из исходного кода
 отмеченной версии, и к каждому прилагается подписанное свидетельство о
-происхождении сборки. С [GitHub CLI](https://cli.github.com/):
+происхождении сборки. С [GitHub CLI](https://cli.github.com/) версии 2.49 и новее:
 
 ```bash
 gh attestation verify HoldSwitch-<версия>-win-x64.zip --repo Roman-Matus/HoldSwitch
