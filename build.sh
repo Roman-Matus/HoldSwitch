@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Тесты движка (gcc) и сборка HoldSwitch.exe под Windows x64 (zig cc).
-# Zig ставится один раз: python3 -m venv .venv && .venv/bin/pip install ziglang
+# Zig ставится один раз: python3 -m venv .venv && .venv/bin/pip install ziglang==0.16.0
 set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p build dist

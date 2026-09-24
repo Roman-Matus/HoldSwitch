@@ -1,6 +1,6 @@
 ﻿HoldSwitch — смена языка долгим нажатием
 =========================================
-Версия 0.9.0 · © 2026 .NoxCode
+© 2026 .NoxCode · https://github.com/Roman-Matus/HoldSwitch
 
 Что делает
 ----------

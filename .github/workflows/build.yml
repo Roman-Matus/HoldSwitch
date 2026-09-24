@@ -1,0 +1,59 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write      # публикация релиза по метке
+      id-token: write      # свидетельство о происхождении сборки
+      attestations: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Zig C compiler
+        run: python3 -m venv .venv && .venv/bin/pip install ziglang==0.16.0
+
+      - name: Check tag matches src/version.h
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          VER=$(sed -n 's/^#define HS_VERSION_STR "\(.*\)"/\1/p' src/version.h)
+          test "v$VER" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != version $VER"; exit 1; }
+
+      - name: Test, build and package
+        run: ./package.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HoldSwitch
+          path: |
+            dist/HoldSwitch.exe
+            release/
+
+      - name: Attest build provenance
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/HoldSwitch.exe
+            release/*.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" release/* --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" release/* --title "HoldSwitch ${GITHUB_REF_NAME#v}" \
+              --notes-file .github/release-notes.md --prerelease
+          fi

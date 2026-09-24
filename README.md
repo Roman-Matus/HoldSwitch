@@ -5,15 +5,30 @@ Hold any letter, digit or symbol key a little longer than usual — about half a
 second — and the keyboard layout switches to the next one (EN → RU → EN…).
 Held letter keys no longer auto-repeat.
 
-[Русская версия](README.ru.md) · Version 0.9.0 · © 2026 .NoxCode · [MIT License](LICENSE)
+[![Build](https://github.com/Roman-Matus/HoldSwitch/actions/workflows/build.yml/badge.svg)](https://github.com/Roman-Matus/HoldSwitch/actions/workflows/build.yml)
+
+[Русская версия](README.ru.md) · © 2026 .NoxCode · [MIT License](LICENSE)
 
 ## Download
 
-Get `HoldSwitch-0.9.0-win-x64.zip` from [Releases](../../releases), unpack it and
-run `HoldSwitch.exe`. No installation is needed. Windows 10/11, x64.
+Get the latest `HoldSwitch-<version>-win-x64.zip` from [Releases](../../releases),
+unpack it and run `HoldSwitch.exe`. No installation is needed. Windows 10/11, x64.
 
 The file is not code-signed yet, so Windows may show *"Windows protected your
 PC"*: click **More info → Run anyway**.
+
+### Verify the download
+
+Releases are built by [GitHub Actions](.github/workflows/build.yml) from the
+tagged source, and each one carries a signed build provenance attestation.
+With the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh attestation verify HoldSwitch-<version>-win-x64.zip --repo Roman-Matus/HoldSwitch
+```
+
+The build is reproducible: `./package.sh` on the same commit produces the same
+`HoldSwitch.exe` and the same zip, byte for byte.
 
 ## Features
 
@@ -64,7 +79,7 @@ The exe is cross-compiled on Linux with [Zig](https://ziglang.org/)'s C
 compiler; tests run with the host `gcc`.
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install ziglang   # once
+python3 -m venv .venv && .venv/bin/pip install ziglang==0.16.0   # once
 ./build.sh      # runs tests, builds dist/HoldSwitch.exe
 ./package.sh    # builds the release zip in release/
 ```

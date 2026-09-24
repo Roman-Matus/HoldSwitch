@@ -5,16 +5,31 @@
 около полусекунды, — раскладка переключится на следующую (RU → EN → RU…).
 Автоповтор этих клавиш убран.
 
-[English version](README.md) · Версия 0.9.0 · © 2026 .NoxCode · [Лицензия MIT](LICENSE)
+[![Build](https://github.com/Roman-Matus/HoldSwitch/actions/workflows/build.yml/badge.svg)](https://github.com/Roman-Matus/HoldSwitch/actions/workflows/build.yml)
+
+[English version](README.md) · © 2026 .NoxCode · [Лицензия MIT](LICENSE)
 
 ## Скачать
 
-Скачайте `HoldSwitch-0.9.0-win-x64.zip` в разделе [Releases](../../releases),
+Скачайте последний `HoldSwitch-<версия>-win-x64.zip` в разделе [Releases](../../releases),
 распакуйте и запустите `HoldSwitch.exe`. Устанавливать ничего не нужно.
 Windows 10/11, x64.
 
 У файла пока нет цифровой подписи, поэтому Windows может показать «Система
 Windows защитила ваш компьютер»: нажмите **Подробнее → Выполнить в любом случае**.
+
+### Как проверить скачанный файл
+
+Релизы собирает [GitHub Actions](.github/workflows/build.yml) из исходного кода
+отмеченной версии, и к каждому прилагается подписанное свидетельство о
+происхождении сборки. С [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh attestation verify HoldSwitch-<версия>-win-x64.zip --repo Roman-Matus/HoldSwitch
+```
+
+Сборка воспроизводимая: `./package.sh` на том же коммите даёт тот же
+`HoldSwitch.exe` и тот же zip байт в байт.
 
 ## Возможности
 
@@ -65,7 +80,7 @@ HoldSwitch видит каждое нажатие клавиши — иначе 
 тесты — системным `gcc`.
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install ziglang   # один раз
+python3 -m venv .venv && .venv/bin/pip install ziglang==0.16.0   # один раз
 ./build.sh      # тесты и dist/HoldSwitch.exe
 ./package.sh    # zip для релиза в release/
 ```
