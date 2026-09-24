@@ -17,7 +17,7 @@ jobs:
       id-token: write      # свидетельство о происхождении сборки
       attestations: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Zig C compiler
         run: python3 -m venv .venv && .venv/bin/pip install ziglang==0.16.0
@@ -31,7 +31,7 @@ jobs:
       - name: Test, build and package
         run: ./package.sh
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: HoldSwitch
           path: |
@@ -40,7 +40,7 @@ jobs:
 
       - name: Attest build provenance
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: |
             dist/HoldSwitch.exe
