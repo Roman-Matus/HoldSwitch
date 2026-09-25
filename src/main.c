@@ -335,7 +335,7 @@ static void enable_dpi_awareness(void)
     set_ctx_fn set_ctx = (set_ctx_fn)(void *)GetProcAddress(GetModuleHandleW(L"user32.dll"),
                                                             "SetProcessDpiAwarenessContext");
     if (!set_ctx || !set_ctx(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
-        enable_dpi_awareness();
+        SetProcessDPIAware();
 }
 
 /* ---------- окно ---------- */
