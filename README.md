@@ -17,6 +17,14 @@ unpack it and run `HoldSwitch.exe`. No installation is needed. Windows 10/11, x6
 The file is not code-signed yet, so Windows may show *"Windows protected your
 PC"*: click **More info → Run anyway**.
 
+For the same reason, and because the program watches key presses, your
+antivirus may scan it on every launch or block it. Avast, for example, first
+runs it in its sandbox: *"Could not start listening to the keyboard"* appears,
+disappears by itself a few seconds later, and then the program starts
+normally. To avoid this, **add `HoldSwitch.exe` to your antivirus
+exclusions** — at the path where you unpacked it. If scanning comes back after
+an update, add the exclusion again.
+
 ### Verify the download
 
 Releases are built by [GitHub Actions](.github/workflows/build.yml) from the
